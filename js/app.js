@@ -10,19 +10,29 @@ function eventListeners() {
 }
 
 //Clases
-  class Presupuesto{
-    constructor(presupuesto){
-      this.presupuesto = Number(presupuesto);
-      this.restante = Number(presupuesto);
-      this.gastos = [];
-    }
+class Presupuesto {
+  constructor(presupuesto) {
+    this.presupuesto = Number(presupuesto);
+    this.restante = Number(presupuesto);
+    this.gastos = [];
   }
+}
 
-  class UI {
+class UI {
+  insertarPresupuesto(cantidad) {
+    //Extraemos el valor
+    const { presupuesto, restante } = cantidad;
 
+    //Lo agregamos al html
+    document.querySelector("#total").textContent = presupuesto;
+    document.querySelector("#restante").textContent = restante;
   }
+}
 
-  let presupuesto;
+// Instanciar
+const ui = new UI();
+let presupuesto;
+
 //Funciones
 function preguntarPresupuesto() {
   const presupuestoUsuario = prompt("¿Cúal es tu presupuesto?");
@@ -38,6 +48,8 @@ function preguntarPresupuesto() {
     window.location.reload();
   }
 
-  const presupuesto = new Presupuesto(presupuestoUsuario)
-  console.log(presupuesto)
+  const presupuesto = new Presupuesto(presupuestoUsuario);
+  console.log(presupuesto);
+
+  ui.insertarPresupuesto(presupuesto);
 }
